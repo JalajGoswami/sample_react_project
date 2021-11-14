@@ -1,0 +1,14 @@
+#footer{
+    background-color: black;
+    color: azure;
+    margin-bottom: -2%;
+}
+#footer a{
+    color: lightskyblue;
+}
+@media screen and (max-width:750px){
+    #footer{margin-bottom: -3%;}
+}
+@media screen and (max-width:550px){
+    #footer{margin-bottom: -4%;}
+}
