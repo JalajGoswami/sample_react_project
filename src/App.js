@@ -10,10 +10,13 @@ class App extends Component {
     this.btnLocal = React.createRef()
     this.btnInternet = React.createRef()
     this.state = {
-       source: 'local'
+      source: 'local',
+      Data: []
     }
   }
-
+  dataUpdater = (data)=>{
+    this.setState({Data:data})
+  }
   fetchLocalData = () => {
     const btn1 = this.btnLocal.current
     const btn2 = this.btnInternet.current
@@ -38,6 +41,7 @@ class App extends Component {
   }
   render()
   {
+    const {source, Data}=this.state
     return (
       <div className="App">
         <h1>React App for Data Fetching & Chart Representation</h1>
@@ -45,7 +49,7 @@ class App extends Component {
           <button ref={this.btnLocal} onClick={this.fetchLocalData} className="active">Local Data</button>
           <button ref={this.btnInternet} onClick={this.fetchInternetData}>Data over Internet</button>
         </div>
-        {this.state.source=='internet' ? <h3>Data fetched from the Fake JSON API using <a href="https://mocki.io/fake-json-api" target="_blank">mocki.io/fake-json-api</a></h3>
+        {source=='internet' ? <h3>Data fetched from the Fake JSON API using <a href="https://mocki.io/fake-json-api" target="_blank">mocki.io/fake-json-api</a></h3>
         : <h3>Data fetched from Local dummyData.json file stored in src folder</h3>}
         <div id="container">
           <table>
@@ -54,9 +58,9 @@ class App extends Component {
             <th>Year</th>
             <th>Medals</th>
             </tr>
-            <TableContent source={this.state.source}/>
+            <TableContent source={source} updater={this.dataUpdater}/>
           </table>
-          <Chart source={this.state.source} />
+          <Chart source={source} Data={Data}/>
         </div>
         <Footer />
       </div>

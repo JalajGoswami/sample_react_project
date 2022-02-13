@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import LocalData from '../dummyData.json'
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
 class Chart extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
-             chartWidth:600
+             chartWidth:400
         }
     }
     componentDidMount(){
@@ -19,16 +19,14 @@ class Chart extends Component {
             .catch()      
     }
     widthHandler = () =>{
-        if(window.innerWidth>1000){
+        if(window.innerWidth>768){
             this.setState({chartWidth:600})
-        }else if(window.innerWidth>600){
-            this.setState({chartWidth:500})
-        }else if(window.innerWidth>450){
-            this.setState({chartWidth:400})
-        }else{this.setState({chartWidth:320})}
+        }else{
+            const width=window.innerWidth>360?0.9*window.innerWidth:320
+            this.setState({chartWidth:(width)})
+        }
     }
     render() {
-        
         const Data = this.props.source=='internet' ? this.state.InternetData : LocalData
         return (
             <div>
@@ -37,6 +35,7 @@ class Chart extends Component {
                     <CartesianGrid stroke="#ccc" />
                     <XAxis dataKey="Year" />
                     <YAxis />
+                    <Tooltip />
                 </LineChart>
             </div>
         )

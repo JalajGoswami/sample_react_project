@@ -24,12 +24,16 @@
 #container{
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   padding: 5%;
 }
 table{
   border: 4px solid rgb(107, 107, 107);
   border-radius: 25px;
-  width: 30%;
+  width: 70%;
+  max-width: 28rem;
+  min-width: 20rem;
+  margin-bottom: 5%;
 }
 table th{
   border: 2px solid grey;
@@ -42,28 +46,7 @@ tr{
   padding: 1% 2%;
 }
 td{
-  padding: 0% 10%;
+  padding: 1% 10%;
   border: 1px solid grey;
   border-radius: 2px;
-}
-@media screen and (max-width:1000px) {
-  #container{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-  }
-  table{
-    width: 50%;
-    margin-bottom: 5%;
-  }
-}
-@media screen and (max-width:800px) {
-  table{width: 60%;}
-}
-@media screen and (max-width:600px) {
-  table{width: 70%;}
-}
-@media screen and (max-width:500px) {
-  table{width: 80%;}
 }
